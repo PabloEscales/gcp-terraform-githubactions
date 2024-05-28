@@ -1,7 +1,7 @@
 resource "google_storage_bucket" "my-bucket" {
   name                     = "poel-test-s3"
   location                 = "EU"
-  project                  = ""
+  project                  = "test-1"
   force_destroy            = true
   public_access_prevention = "enforced"
 }
