@@ -42,7 +42,7 @@ resource "google_storage_bucket_object" "google_logo_png" {
   bucket = google_storage_bucket.my-bucket.name
 }
 
-resource "google_storage_bucket_object" "google_logo_png" {
+resource "google_storage_bucket_object" "style_css" {
   name   = "style.css"
   source = "./website/style.css"
   bucket = google_storage_bucket.my-bucket.name
