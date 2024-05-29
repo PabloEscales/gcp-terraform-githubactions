@@ -1,8 +1,8 @@
 resource "google_storage_bucket" "my-bucket" {
-  name                     = "poel-test-s3"
-  location                 = "EU"
-  project                  = "spa-newlearningdev-dev-001"
-  force_destroy            = true
+  name          = "poel-test-s3"
+  location      = "EU"
+  project       = "spa-newlearningdev-dev-001"
+  force_destroy = true
 }
 
 # Make a new object public
