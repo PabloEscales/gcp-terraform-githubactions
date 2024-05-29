@@ -14,6 +14,13 @@ resource "google_storage_bucket" "my-bucket" {
 #   entity = "allUsers"
 # }
 
+resource "google_storage_bucket_iam_member" "bucket_access" {
+  bucket = google_storage_bucket.my-bucket.name
+  role   = "roles/storage.objectAdmin"
+  member = "serviceAccount:poel-dev-test@spa-newlearningdev-dev-001.iam.gserviceaccount.com"
+}
+
+
 # Upload the index.html file to the bucket
 resource "google_storage_bucket_object" "static_site_src" {
   name   = "index.html"
