@@ -29,9 +29,21 @@ resource "google_storage_bucket_iam_member" "bucket_access" {
   member = "serviceAccount:poel-dev-test@spa-newlearningdev-dev-001.iam.gserviceaccount.com"
 }
 
-# Upload the index.html file to the bucket
+# Upload files to the bucket
 resource "google_storage_bucket_object" "static_site_src" {
   name   = "index.html"
   source = "./website/index.html"
+  bucket = google_storage_bucket.my-bucket.name
+}
+
+resource "google_storage_bucket_object" "google_logo_png" {
+  name   = "google-logo.png"
+  source = "./website/google-logo.png"
+  bucket = google_storage_bucket.my-bucket.name
+}
+
+resource "google_storage_bucket_object" "google_logo_png" {
+  name   = "style.css"
+  source = "./website/style.css"
   bucket = google_storage_bucket.my-bucket.name
 }
