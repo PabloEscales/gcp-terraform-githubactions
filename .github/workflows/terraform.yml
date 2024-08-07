@@ -5,6 +5,15 @@ on:
     branches: [ "main" ]
   pull_request:
   workflow_dispatch:
+    inputs:
+      action:
+        description: 'Action to perform'
+        required: true
+        default: 'apply'
+        type: choice
+        options:
+          - apply
+          - destroy
 
 permissions:
   contents: read
