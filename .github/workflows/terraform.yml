@@ -45,6 +45,14 @@ jobs:
         GOOGLE_CREDENTIALS: ${{ secrets.GCP_SA_KEY }}
 
     - name: Terraform Apply
+      if: github.event.inputs.action == 'apply'
       run: terraform apply -auto-approve -input=false
+      env:
+        GOOGLE_CREDENTIALS: ${{ secrets.GCP_SA_KEY }}
+
+
+    - name: Terraform Destroy
+      if: github.event.inputs.action == 'destroy'
+      run: terraform destroy -auto-approve
       env:
         GOOGLE_CREDENTIALS: ${{ secrets.GCP_SA_KEY }}
