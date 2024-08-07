@@ -39,17 +39,17 @@ jobs:
     - name: Terraform Init
       run: terraform init
 
-    # Nuevo paso para cambiar los permisos de los archivos del proveedor
     - name: Fix provider permissions
       run: chmod -R 755 .terraform/providers/
 
     - name: Terraform Format
       run: terraform fmt -check
       env:
-          GOOGLE_CREDENTIALS: ${{ secrets.GCP_SA_KEY }}
+        GOOGLE_CREDENTIALS: ${{ secrets.GCP_SA_KEY }}
 
-    - name: Terraform Plan
-      run: terraform plan -input=false
+    - name: Terraform Plan (Destroy)
+      if: github.event.inputs.action == 'destroy'
+      run: terraform plan -destroy -out=destroy.plan
       env:
         GOOGLE_CREDENTIALS: ${{ secrets.GCP_SA_KEY }}
 
@@ -58,7 +58,6 @@ jobs:
       run: terraform apply -auto-approve -input=false
       env:
         GOOGLE_CREDENTIALS: ${{ secrets.GCP_SA_KEY }}
-
 
     - name: Terraform Destroy
       if: github.event.inputs.action == 'destroy'
